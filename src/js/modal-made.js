@@ -1,65 +1,27 @@
-function readMore() {
-    const dots = document.getElementById('dots');
-    const more = document.getElementById('more');
-    const btn = document.getElementById('btn');
+getRef = x => document.querySelector(x);
 
-    if (dots.style.display === 'none') {
-        dots.style.display = 'inline';
-        btn.innerHTML = 'read more';
-        more.style.display = 'none';
-    } else {
-        dots.style.display = 'none';
-        btn.innerHTML = 'hide';
-        more.style.display = 'inline';
+getRef('.modal-made__list').addEventListener('click', onClick);
+
+function onClick(evt) {
+
+    if (evt.target.nodeName !== 'BUTTON') return;
+    const number = evt.target.dataset.action
+    if (!getRef(`[data-dots="${number}"]`).classList.contains("visually-hidden")) {
+        showMore(number);
+        return;
     }
+    hideText(number)
+
+}
+function hideText(number) {
+    getRef(`[data-dots="${number}"]`).classList.remove("visually-hidden");
+    getRef(`[data-text="${number}"]`).style.display = 'none';
+    getRef(`[data-action="${number}"]`).innerHTML = "show more";
+}
+function showMore(number) {
+    getRef(`[data-dots="${number}"]`).classList.add("visually-hidden");
+    getRef(`[data-text="${number}"]`).style.display = 'inline';
+    getRef(`[data-action="${number}"]`).innerHTML = "hide";
 }
 
-document.querySelectorAll('.readMore').forEach(el => {
-    el.addEventListener('click', function () {
-        readMore();
-    });
-});
 
-function readMoreFirst() {
-    const dotsFirst = document.getElementById('dotsFirst');
-    const moreFirst = document.getElementById('moreFirst');
-    const btnFirst = document.getElementById('btnFirst');
-
-    if (dotsFirst.style.display === 'none') {
-        dotsFirst.style.display = 'inline';
-        btnFirst.innerHTML = 'read more';
-        moreFirst.style.display = 'none';
-    } else {
-        dotsFirst.style.display = 'none';
-        btnFirst.innerHTML = 'hide';
-        moreFirst.style.display = 'inline';
-    }
-}
-
-document.querySelectorAll('.readMoreFirst').forEach(el => {
-    el.addEventListener('click', function () {
-        readMoreFirst();
-    });
-});
-
-function readMoreSecond() {
-    const dotsSecond = document.getElementById('dotsSecond');
-    const moreSecond = document.getElementById('moreSecond');
-    const btnSecond = document.getElementById('btnSecond');
-
-    if (dotsSecond.style.display === 'none') {
-        dotsSecond.style.display = 'inline';
-        btnSecond.innerHTML = 'read more';
-        moreSecond.style.display = 'none';
-    } else {
-        dotsSecond.style.display = 'none';
-        btnSecond.innerHTML = 'hide';
-        moreSecond.style.display = 'inline';
-    }
-}
-
-document.querySelectorAll('.readMoreSecond').forEach(el => {
-    el.addEventListener('click', function () {
-        readMoreSecond();
-    });
-});

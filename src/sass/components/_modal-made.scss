@@ -46,17 +46,13 @@
     background-color: transparent;
     color: var(--color-menu-bg);
   }
-
-  #more {
+  .modal-made__more-text {
     display: none;
   }
-
-  #moreFirst {
-    display: none;
-  }
-
-  #moreSecond {
-    display: none;
+  @include mq(tab) {
+    .modal-made__more-text {
+      display: inline;
+    }
   }
 }
 
